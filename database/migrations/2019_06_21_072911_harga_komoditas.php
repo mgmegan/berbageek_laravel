@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHargaKomoditas extends Migration
+class HargaKomoditas extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,15 @@ class CreateHargaKomoditas extends Migration
     public function up()
     {
         Schema::create('harga_komoditas', function (Blueprint $table) {
-            $table->bigInt('id');
-            $table->bigInt('komoditas_id');
-            $table->bigInt('pedagang_id');
-            $table->bigInt('petugas_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('komoditas_id');
+            $table->unsignedBigInteger('pedagang_id');
+            $table->unsignedBigInteger('petugas_id');
             $table->date('tanggal');
             $table->unsignedInteger('harga');
             $table->timestamps();
 
-            $table->foreign('komodatas_id')
+            $table->foreign('komoditas_id')
                   ->references('id')
                   ->on('komoditas');
 
